@@ -1,0 +1,17 @@
+<input type="password" id="pass" placeholder="Contraseña">
+<button onclick="login()">Entrar</button>
+
+<script>
+async function login(){
+  let password = document.getElementById("pass").value;
+
+  let res = await fetch("http://localhost:5000/login", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({password})
+  });
+
+  let data = await res.json();
+  alert(JSON.stringify(data));
+}
+</script>
