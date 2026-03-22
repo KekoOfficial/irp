@@ -1,3 +1,3 @@
 #!/bin/bash
-cd backend
+cd "$(dirname "$0")/backend"
 python server.py
