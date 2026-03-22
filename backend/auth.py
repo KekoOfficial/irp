@@ -8,8 +8,7 @@ def login(password):
     c.execute("SELECT name, password FROM users")
     users = c.fetchall()
 
-    for user in users:
-        name, hashed = user
+    for name, hashed in users:
         if verify(password, hashed):
             return name
 
