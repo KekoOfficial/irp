@@ -8,9 +8,13 @@ app = Flask(__name__)
 
 init_db()
 
+@app.route("/")
+def home():
+    return "🔥 IRP SYSTEM ONLINE 🔥"
+
 @app.route("/login", methods=["POST"])
 def do_login():
-    password = request.json["password"]
+    password = request.json.get("password")
     user = login(password)
 
     if user:
@@ -33,4 +37,5 @@ def create():
     create_user(data["name"], data["password"])
     return jsonify({"status": "created"})
 
-app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
