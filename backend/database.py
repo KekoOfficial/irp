@@ -1,11 +1,15 @@
 import sqlite3
+import os
 
-DB_PATH = "data/irp.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.abspath(os.path.join(BASE_DIR, "..", "data", "irp.db"))
 
 def connect():
     return sqlite3.connect(DB_PATH)
 
 def init_db():
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+
     conn = connect()
     c = conn.cursor()
 
